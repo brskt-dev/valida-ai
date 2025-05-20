@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>valida-ai – Teste Completo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #111;
+        color: #eee;
+        padding: 2rem;
+      }
+
+      input {
+        padding: 8px;
+        margin-bottom: 10px;
+        width: 300px;
+        border: none;
+        border-radius: 4px;
+      }
+
+      .valid {
+        color: #39ff14;
+      }
+
+      .invalid {
+        color: #ff4f4f;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>valida-ai – Teste Completo de Validações</h1>
+
+    <div>
+      <label>Nome:</label><br /><input id="nome" />
+      <p id="nome-result"></p>
+    </div>
+    <div>
+      <label>Email:</label><br /><input id="email" />
+      <p id="email-result"></p>
+    </div>
+    <div>
+      <label>CPF:</label><br /><input id="cpf" />
+      <p id="cpf-result"></p>
+    </div>
+    <div>
+      <label>CNPJ:</label><br /><input id="cnpj" />
+      <p id="cnpj-result"></p>
+    </div>
+    <div>
+      <label>URL:</label><br /><input id="url" />
+      <p id="url-result"></p>
+    </div>
+    <div>
+      <label>CEP:</label><br /><input id="cep" />
+      <p id="cep-result"></p>
+    </div>
+    <div>
+      <label>Cor HEX:</label><br /><input id="hex" />
+      <p id="hex-result"></p>
+    </div>
+    <div>
+      <label>Data (>= 01/01/2000):</label><br /><input id="data" type="date" />
+      <p id="data-result"></p>
+    </div>
+    <div>
+      <label>IP:</label><br /><input id="ip" />
+      <p id="ip-result"></p>
+    </div>
+    <div>
+      <label>Número (entre 10 e 100):</label><br /><input
+        id="numero"
+        type="number"
+      />
+      <p id="numero-result"></p>
+    </div>
+    <div>
+      <label>Cartão de crédito:</label><br /><input id="cc" />
+      <p id="cc-result"></p>
+    </div>
+
+    <script type="module">
+      import {
+        validate,
+        string,
+        number,
+        date,
+        ip,
+        creditCard,
+        util,
+      } from "./src/validate.js";
+
+      const campos = [
+        {
+          el: "nome",
+          validador: validate(
+            string.minLength(3),
+            string.maxLength(15),
+            util.isRequired
+          ),
+        },
+        { el: "email", validador: validate(util.isEmail) },
+        { el: "cpf", validador: validate(util.isCpf) },
+        { el: "cnpj", validador: validate(util.isCnpj) },
+        { el: "url", validador: validate(util.isURL) },
+        { el: "cep", validador: validate(util.isCep) },
+        { el: "hex", validador: validate(util.isHexColor) },
+        {
+          el: "data",
+          validador: validate((val) => {
+            const dateValue = new Date(val);
+            return date.minDate(new Date("2000-01-01"))(dateValue);
+          }),
+        },
+        { el: "ip", validador: validate(ip.isIp) },
+        {
+          el: "numero",
+          validador: validate(number.between(10, 100)),
+        },
+        { el: "cc", validador: validate(creditCard.isCreditCard) },
+      ];
+
+      campos.forEach(({ el, validador }) => {
+        const input = document.getElementById(el);
+        const result = document.getElementById(`${el}-result`);
+        input.addEventListener("input", () => {
+          const valido = validador(
+            input.type === "number" ? Number(input.value) : input.value
+          );
+          result.textContent = valido ? "Válido ✅" : "Inválido ❌";
+          result.className = valido ? "valid" : "invalid";
+        });
+      });
+    </script>
+  </body>
+</html>

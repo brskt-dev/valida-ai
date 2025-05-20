@@ -1,4 +1,4 @@
-import {_isDate} from './lib/date';
+import {_isDate} from './lib/date.js';
 
 /*
  * Checks for a 'date'

@@ -1,7 +1,7 @@
 # Util
 
 ```es6
-import {util} from 'valid.js'
+import {util} from 'valida-ai'
 ```
 
 ## isRequired
@@ -10,7 +10,7 @@ Checks for data
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.required)
 let result = isvalid(15)
@@ -25,7 +25,7 @@ Checks for email
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isEmail)
 let result = isvalid('email@gmail.com')
@@ -40,7 +40,7 @@ Checks for cep
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isCep)
 let result = isvalid('88075-290')
@@ -55,7 +55,7 @@ Checks for url
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isURL)
 let result = isvalid('https://github.com')
@@ -70,7 +70,7 @@ Checks for hex color. Supports both standard and shorthand
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isHexColor)
 let result = isvalid('#1CE')
@@ -87,7 +87,7 @@ Checks for valid CPF number
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isCpf)
 let result = isvalid('948.155.461-93')
@@ -106,7 +106,7 @@ Checks for valid CNPJ number
 
 #### Usage
 ```es6
-import {validate, util} from 'valid.js'
+import {validate, util} from 'valida-ai'
 
 let isvalid = validate(util.isCnpj)
 let result = isvalid('43.132.546/0001-09')

@@ -1,7 +1,7 @@
 # Boolean
 
 ```es6
-import {bool} from 'valid.js'
+import {bool} from 'valida-ai'
 ```
 
 ## isTrue
@@ -10,7 +10,7 @@ Checks for true
 
 #### Usage
 ```es6
-import {validate, bool} from 'valid.js'
+import {validate, bool} from 'valida-ai'
 
 let isvalid = validate(bool.isTrue)
 let result = isvalid(true)
@@ -25,7 +25,7 @@ Checks for false
 
 #### Usage
 ```es6
-import {validate, bool} from 'valid.js'
+import {validate, bool} from 'valida-ai'
 
 let isvalid = validate(bool.isFalse)
 let result = isvalid(false)

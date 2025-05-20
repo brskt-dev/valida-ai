@@ -1,7 +1,7 @@
 # Dates
 
 ```es6
-import {date} from 'valid.js'
+import {date} from 'valida-ai'
 ```
 
 ## isDate
@@ -10,7 +10,7 @@ Checks for a 'Date'
 
 #### Usage
 ```es6
-import {validate, date} from 'valid.js'
+import {validate, date} from 'valida-ai'
 
 let isvalid = validate(date.isDate)
 let result = isvalid(new Date())
@@ -26,7 +26,7 @@ Validates that 'date' is less than or equal to (<=) the value
 
 #### Usage
 ```es6
-import {validate, date} from 'valid.js'
+import {validate, date} from 'valida-ai'
 
 let isvalid = validate(date.maxDate(new Date(2016, 0, 1)))
 let result = isvalid(new Date(2015, 9, 24))
@@ -42,7 +42,7 @@ Validates that 'date' is greater than or equal to (>=) the value
 #### Usage
 
 ```es6
-import {validate, date} from 'valid.js'
+import {validate, date} from 'valida-ai'
 
 let isvalid = validate(date.minDate(new Date(2015, 0, 1)))
 let result = isvalid(new Date(2015, 9, 24))
@@ -58,7 +58,7 @@ Validates if date is within the range
 #### Usage
 
 ```es6
-import {validate, date} from 'valid.js'
+import {validate, date} from 'valida-ai'
 
 let min = new Date(2015, 0, 1)
 let max = new Date(2016, 0, 1)

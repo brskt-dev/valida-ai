@@ -1,7 +1,7 @@
 # Credit Card
 
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 ```
 
 ## isVisa
@@ -10,7 +10,7 @@ Checks for valid Visa&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isVisa(creditCard)
 // result => true
@@ -25,7 +25,7 @@ Checks for valid Elo&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isElo(creditCard)
 // result => true
@@ -40,7 +40,7 @@ Checks for valid Hipercard&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isHipercard(creditCard)
 // result => true
@@ -54,7 +54,7 @@ Checks for valid Mastercard&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isMasterCard(creditCard)
 // result => true
@@ -68,7 +68,7 @@ Checks for valid Diners&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isDiners(creditCard)
 // result => true
@@ -82,7 +82,7 @@ Checks for valid American Express&copy; credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isAmex(creditCard)
 // result => true
@@ -96,7 +96,7 @@ Checks for valid credit card
 
 #### Usage
 ```es6
-import {creditCard} from 'valid.js'
+import {creditCard} from 'valida-ai'
 
 let result = creditCard.isCreditCard(creditCard)
 // result => true

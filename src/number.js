@@ -1,4 +1,4 @@
-import {_isNumber} from './lib/number';
+import {_isNumber} from './lib/number.js';
 
 /*
  * Checks for a 'Number'

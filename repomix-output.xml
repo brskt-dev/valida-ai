@@ -1,0 +1,1425 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+.editorconfig
+.gitignore
+.istanbul.yml
+bower.json
+docs/bool.md
+docs/creditCard.md
+docs/date.md
+docs/number.md
+docs/string.md
+docs/util.md
+package.json
+README.md
+src/boolean.js
+src/creditCard.js
+src/date.js
+src/ip.js
+src/lib/array.js
+src/lib/date.js
+src/lib/isnil.js
+src/lib/number.js
+src/lib/object.js
+src/lib/reduce.js
+src/lib/string.js
+src/number.js
+src/string.js
+src/util.js
+src/validate.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".editorconfig">
+# editorconfig.org
+root = true
+
+# All files
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+indent_style = space
+
+# CSS Files based on https://github.com/necolas/idiomatic-css
+[*.{css, scss, styl, less}]
+indent_size = 4
+
+# JS Files based on https://github.com/rwaldron/idiomatic.js
+[*.{js}]
+indent_size = 4
+
+# JSON Files
+[*.{json,}]
+indent_size = 2
+insert_final_newline = false
+</file>
+
+<file path=".gitignore">
+node_modules
+public
+coverage
+</file>
+
+<file path=".istanbul.yml">
+verbose: false
+instrumentation:
+  root: ./src
+  excludes: ["**/public/**", "**/dist/**"]
+  include-all-sources: true
+reporting:
+  reports:
+    - html
+</file>
+
+<file path="bower.json">
+{
+  "name": "valid.js",
+  "main": "./dist/validate.js",
+  "version": "1.2.0",
+  "authors": [
+    "Daniel Leite de Oliveira <dleitee@gmail.com>"
+  ],
+  "description": "A simple library for data validation",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "validate",
+    "valid.js",
+    "data"
+  ],
+  "license": "MIT",
+  "homepage": "github.com/dleitee",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
+</file>
+
+<file path="docs/bool.md">
+# Boolean
+
+```es6
+import {bool} from 'valid.js'
+```
+
+## isTrue
+
+Checks for true
+
+#### Usage
+```es6
+import {validate, bool} from 'valid.js'
+
+let isvalid = validate(bool.isTrue)
+let result = isvalid(true)
+// result => true
+let resultFalse = isvalid(false)
+// resultFalse => false
+```
+
+## isFalse
+
+Checks for false
+
+#### Usage
+```es6
+import {validate, bool} from 'valid.js'
+
+let isvalid = validate(bool.isFalse)
+let result = isvalid(false)
+// result => true
+let resultFalse = isvalid(true)
+// resultFalse => false
+```
+
+.
+</file>
+
+<file path="docs/creditCard.md">
+# Credit Card
+
+```es6
+import {creditCard} from 'valid.js'
+```
+
+## isVisa
+
+Checks for valid Visa&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isVisa(creditCard)
+// result => true
+let resultFalse = creditCard.isVisa(invalidVisaCreditCard)
+// resultFalse => false
+```
+
+
+## isElo
+
+Checks for valid Elo&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isElo(creditCard)
+// result => true
+let resultFalse = creditCard.isElo(invalidEloCreditCard)
+// resultFalse => false
+```
+
+
+## isHipercard
+
+Checks for valid Hipercard&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isHipercard(creditCard)
+// result => true
+let resultFalse = creditCard.isHipercard(invalidHipercardCreditCard)
+// resultFalse => false
+
+
+## isMasterCard
+
+Checks for valid Mastercard&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isMasterCard(creditCard)
+// result => true
+let resultFalse = creditCard.isMasterCard(invalidMastercardCreditCard)
+// resultFalse => false
+
+
+## isDiners
+
+Checks for valid Diners&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isDiners(creditCard)
+// result => true
+let resultFalse = creditCard.isDiners(invalidDinersCreditCard)
+// resultFalse => false
+
+
+## isAmex
+
+Checks for valid American Express&copy; credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isAmex(creditCard)
+// result => true
+let resultFalse = creditCard.isAmex(invalidAmexCreditCard)
+// resultFalse => false
+
+
+## isCreditCard
+
+Checks for valid credit card
+
+#### Usage
+```es6
+import {creditCard} from 'valid.js'
+
+let result = creditCard.isCreditCard(creditCard)
+// result => true
+let resultFalse = creditCard.isCreditCard(invalidCreditCard)
+// resultFalse => false
+</file>
+
+<file path="docs/date.md">
+# Dates
+
+```es6
+import {date} from 'valid.js'
+```
+
+## isDate
+
+Checks for a 'Date'
+
+#### Usage
+```es6
+import {validate, date} from 'valid.js'
+
+let isvalid = validate(date.isDate)
+let result = isvalid(new Date())
+// result => true
+let resultFalse = isvalid('A')
+// resultFalse => false
+```
+
+
+## maxDate(maxDate)
+
+Validates that 'date' is less than or equal to (<=) the value
+
+#### Usage
+```es6
+import {validate, date} from 'valid.js'
+
+let isvalid = validate(date.maxDate(new Date(2016, 0, 1)))
+let result = isvalid(new Date(2015, 9, 24))
+// result => true
+let resultFalse = isvalid(new Date(2016, 1, 1))
+// resultFalse => false
+```
+
+## minDate(min)
+
+Validates that 'date' is greater than or equal to (>=) the value
+
+#### Usage
+
+```es6
+import {validate, date} from 'valid.js'
+
+let isvalid = validate(date.minDate(new Date(2015, 0, 1)))
+let result = isvalid(new Date(2015, 9, 24))
+// result => true
+let resultFalse = isvalid(new Date(2014, 10, 1))
+// resultFalse => false
+```
+
+## between(min, max)
+
+Validates if date is within the range
+
+#### Usage
+
+```es6
+import {validate, date} from 'valid.js'
+
+let min = new Date(2015, 0, 1)
+let max = new Date(2016, 0, 1)
+let isvalid = validate(date.between(min, max))
+let result = isvalid(new Date(2015, 9, 24))
+// result => true
+let resultFalse = isvalid(new Date(2014, 5, 1))
+// resultFalse => false
+```
+
+.
+</file>
+
+<file path="docs/number.md">
+# Numbers
+
+```es6
+import {number} from 'valid.js'
+```
+
+## isNumber
+
+Checks for a 'Number'
+
+#### Usage
+```es6
+import {validate, number} from 'valid.js'
+
+let isvalid = validate(number.isNumber)
+let result = isvalid(15)
+// result => true
+let resultFalse = isvalid('A')
+// resultFalse => false
+```
+
+
+## maxNumber(maxValue)
+
+Validates the size of the 'number' is less than or equal to (<=) the value
+
+#### Usage
+```es6
+import {validate, number} from 'valid.js'
+
+let isvalid = validate(number.maxNumber(15))
+let result = isvalid(15)
+// result => true
+let resultFalse = isvalid(16)
+// resultFalse => false
+```
+
+## minNumber(minValue)
+
+Validates the size of the 'number' is greater than or equal to (>=) the value
+
+#### Usage
+
+```es6
+import {validate, number} from 'valid.js'
+
+let isvalid = validate(number.minNumber(15))
+let result = isvalid(15)
+// result => true
+let resultFalse = isvalid(14)
+// resultFalse => false
+```
+
+## between(minValue, maxValue)
+
+Validates if number is within the range
+
+#### Usage
+
+```es6
+import {validate, number} from 'valid.js'
+
+let isvalid = validate(number.between(10, 15))
+let result = isvalid(13)
+// result => true
+let resultFalse = isvalid(9)
+// resultFalse => false
+```
+
+.
+</file>
+
+<file path="docs/string.md">
+# String
+
+```es6
+import {string} from 'valid.js'
+```
+
+## isString
+
+Checks for a 'String'
+
+#### Usage
+
+```es6
+import {validate, string} from 'valid.js'
+
+let isvalid = validate(string.isString)
+let result = isvalid('Test ValidateJS')
+// result => true
+```
+
+## minLength(value)
+
+Validates the size of the 'string' is greater than or equal to (>=) the value
+
+#### Usage
+```es6
+import {validate, string} from 'valid.js'
+
+let isvalid = validate(string.minLength(15))
+let result = isvalid('Test ValidateJS')
+// result => true
+let resultFalse = isvalid('TestValidateJS')
+// resultFalse => false
+```
+
+## maxLength(value)
+
+Validates the size of the 'string' is less than or equal to (<=) the value
+
+#### Usage
+```es6
+import {validate, string} from 'valid.js'
+
+let isvalid = validate(string.maxLength(15))
+let result = isvalid('Test ValidateJS')
+// result => true
+let resultFalse = isvalid('Test ValidateJS Brazil')
+// resultFalse => false
+```
+
+## length(minValue, maxValue)
+
+Validates that the length of the string is within the range
+
+#### Usage
+
+```es6
+import {validate, string} from 'valid.js'
+
+let isvalid = validate(string.length(10, 15))
+let result = isvalid('Test ValidateJS')
+// result => true
+let resultFalse = isvalid('Test ValidateJS Brazil')
+// resultFalse => false
+```
+
+## regex(expression, lastIndex)
+
+Validate [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+#### Usage
+
+```es6
+import {validate, string} from 'valid.js'
+
+let isvalid = validate(string.regex(/a/))
+let result = isvalid('Test ValidateJS')
+// result => true
+let resultFalse = isvalid('Test VlidteJS Brzil')
+// resultFalse => false
+```
+
+.
+</file>
+
+<file path="docs/util.md">
+# Util
+
+```es6
+import {util} from 'valid.js'
+```
+
+## isRequired
+
+Checks for data
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.required)
+let result = isvalid(15)
+// result => true
+let resultFalse = isvalid(null)
+// resultFalse => false
+```
+
+## isEmail
+
+Checks for email
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isEmail)
+let result = isvalid('email@gmail.com')
+// result => true
+let resultFalse = isvalid('emailgmail.com')
+// resultFalse => false
+```
+
+## isCep
+
+Checks for cep
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isCep)
+let result = isvalid('88075-290')
+// result => true
+let resultFalse = isvalid('88075290')
+// resultFalse => false
+```
+
+## isURL
+
+Checks for url
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isURL)
+let result = isvalid('https://github.com')
+// result => true
+let resultFalse = isvalid('http://.google.com')
+// resultFalse => false
+```
+
+## isHexColor
+
+Checks for hex color. Supports both standard and shorthand
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isHexColor)
+let result = isvalid('#1CE')
+// result => true
+let result = isvalid('#c0ffee')
+// result => true
+let resultFalse = isvalid('ff00gg')
+// resultFalse => false
+```
+
+## isCpf
+
+Checks for valid CPF number
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isCpf)
+let result = isvalid('948.155.461-93')
+// result => true
+let result = isvalid('94815546193')
+// result => true
+let result = isvalid('948155.46193')
+// result => true
+let result = isvalid('948.155.461-94')
+// result => false
+```
+
+## isCnpj
+
+Checks for valid CNPJ number
+
+#### Usage
+```es6
+import {validate, util} from 'valid.js'
+
+let isvalid = validate(util.isCnpj)
+let result = isvalid('43.132.546/0001-09')
+// result => true
+let result = isvalid('43132546000109')
+// result => true
+let result = isvalid('43132546/000109')
+// result => true
+let result = isvalid('43.132.546/0001-10')
+// result => false
+```
+</file>
+
+<file path="package.json">
+{
+  "name": "valida-ai",
+  "version": "1.0.0",
+  "description": "Biblioteca JavaScript para validação simples de dados. Foco em uso comunitário e educacional.",
+  "main": "src/validate.js",
+  "author": "Bruno Anhezini de Souza",
+  "license": "MIT",
+  "keywords": [
+    "validação",
+    "javascript",
+    "cpf",
+    "formulários",
+    "educação"
+  ]
+}
+</file>
+
+<file path="README.md">
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/4838076/28783446-c16cb57c-75e6-11e7-8a38-882954701265.png">
+</p>
+
+[![Build Status](https://travis-ci.org/dleitee/valid.js.svg?branch=master)](https://travis-ci.org/dleitee/valid.js)
+[![Coverage Status](https://coveralls.io/repos/github/dleitee/valid.js/badge.svg?branch=master)](https://coveralls.io/github/dleitee/valid.js?branch=master)
+[![Code Climate](https://codeclimate.com/github/dleitee/valid.js/badges/gpa.svg)](https://codeclimate.com/github/dleitee/valid.js)
+
+A library for data validation.
+
+## Install
+
+ValidateJS is available on npm:
+```
+npm install valid.js --save
+```
+
+or bower:
+```
+bower install valid.js
+```
+
+## Usage
+
+### With ES6/import
+
+```javascript
+import {validate, string, util, isValid} from 'valid.js'
+
+let testIsValid = validate(string.maxLength(15), util.isRequired)
+let result = testIsValid('Test ValidateJS')
+// result => true
+
+// or using the 'isValid' shorthand method
+let result = isValid('Test ValidateJS', [string.maxLength(15), util.isRequired])
+// result => true
+```
+
+### With require
+
+```javascript
+var validatejs = require('valid.js')
+var validate = validatejs.validate,
+    isValid = validatejs.isValid,
+    string = validatejs.string,
+    util = validatejs.util
+
+var testIsValid = validate(string.maxLength(15), util.isRequired)
+var result = testIsValid('Test ValidateJS')
+// result => true
+
+// or using the 'isValid' shorthand method
+var result = isValid('Test ValidateJS', [string.maxLength(15), util.isRequired])
+// result => true
+```
+
+### With Browser
+
+```html
+<script src="./bower_components/valid.js/dist/validate.js"></script>
+```
+
+```javascript
+var validate = validate.validate
+var string = validate.string
+var util = validate.util
+
+var testIsValid = validate(string.maxLength(15), util.isRequired)
+var result = testIsValid('Test ValidateJS')
+// result => true
+```
+OR
+```javascript
+var validate = window.validate.validate
+var string = window.validate.string
+var util = window.validate.util
+
+var testIsValid = validate(string.maxLength(15), util.isRequired)
+var result = testIsValid('Test ValidateJS')
+// result => true
+```
+OR
+```javascript
+var isValid = window.validate.isValid
+var string = window.validate.string
+var util = window.validate.util
+
+var result = isValid('Test ValidateJS', [string.maxLength(15), util.isRequired])
+// result => true
+```
+
+Also available for [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)
+
+# Validation Functions
+
+- [x] [String](https://github.com/dleitee/valid.js/blob/master/docs/string.md)
+    - [x] isString
+    - [x] minLength(min)
+    - [x] maxLength(max)
+    - [x] length(min, max)
+    - [x] regex(reg)
+- [x] [Number](https://github.com/dleitee/valid.js/blob/master/docs/number.md)
+    - [x] isNumber
+    - [x] minNumber
+    - [x] maxNumber
+    - [x] between
+- [x] [Date](https://github.com/dleitee/valid.js/blob/master/docs/date.md)
+    - [x] isDate
+    - [x] minDate(min)
+    - [x] maxDate(max)
+    - [x] between(min, max)
+- [x] [Bool](https://github.com/dleitee/valid.js/blob/master/docs/bool.md)
+    - [x] isTrue
+    - [x] isFalse
+- [x] [Util](https://github.com/dleitee/valid.js/blob/master/docs/util.md)
+    - [x] isRequired
+    - [x] isEmail
+    - [x] isCep
+    - [x] isUrl
+    - [x] isHexColor
+    - [x] isCpf
+    - [x] isCnpj
+- [x] [Credit Card](https://github.com/dleitee/valid.js/blob/master/docs/creditCard.md)
+    - [x] isVisa
+    - [x] isElo
+    - [x] isHipercard
+    - [x] isMasterCard
+    - [x] isDiners
+    - [x] isAmex
+    - [x] isCreditCard
+
+# Contributing
+
+Send us a Pull Request! Here is how:
+
+1. Fork it!
+2. Create your feature branch: git checkout -b my-new-feature
+3. Stage your changes: git add .
+3. Commit your changes: git commit -m 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Submit a pull request
+
+# LICENSE
+The MIT License (MIT)
+
+Copyright (c) 2015 Daniel Leite de Oliveira
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</file>
+
+<file path="src/boolean.js">
+/*
+ * Checks for true
+ * @params value
+ * @return boolean
+ */
+const isTrue = value => value === true;
+
+/*
+ * Checks for false
+ * @params value
+ * @return boolean
+ */
+const isFalse = value => value === false;
+
+/*
+ * Export constant bool
+ */
+export const bool = {
+    isTrue: isTrue,
+    isFalse: isFalse
+};
+</file>
+
+<file path="src/creditCard.js">
+const isVisa = creditCard => {
+    const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/;
+    return visaRegex.test(creditCard);
+};
+
+const isElo = creditCard => {
+    const eloRegex = /^(401178|401179|431274|438935|451416|457393|457631|457632|504175|627780|636297|636368|(506699|5067[0-6]\d|50677[0-8])|(50900\d|5090[1-9]\d|509[1-9]\d{2})|65003[1-3]|(65003[5-9]|65004\d|65005[0-1])|(65040[5-9]|6504[1-3]\d)|(65048[5-9]|65049\d|6505[0-2]\d|65053[0-8])|(65054[1-9]|6505[5-8]\d|65059[0-8])|(65070\d|65071[0-8])|65072[0-7]|(65090[1-9]|65091\d|650920)|(65165[2-9]|6516[6-7]\d)|(65500\d|65501\d)|(65502[1-9]|6550[3-4]\d|65505[0-8]))[0-9]{10,12}/;
+    return eloRegex.test(creditCard);
+};
+
+const isHipercard = creditCard => {
+    let hiperCard = /^(38[0-9]{17}|60[0-9]{14})$/;
+    return hiperCard.test(creditCard);
+};
+
+const isMasterCard = creditCard => {
+    let masterCardRegex = /^5[1-5][0-9]{14}$/;
+    return masterCardRegex.test(creditCard);
+};
+
+const isDiners = creditCard => {
+    let dinersRegex = /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/;
+    return dinersRegex.test(creditCard);
+};
+
+const isAmex = creditCard => {
+    let amexRegex = /^3[47][0-9]{13}$/;
+    return amexRegex.test(creditCard);
+};
+
+const isCreditCard = creditCard =>
+    isAmex(creditCard) || isDiners(creditCard) ||
+    isMasterCard(creditCard) || isHipercard(creditCard) || isElo(creditCard) ||
+    isVisa(creditCard) || false;
+
+/*
+ * Export constant creditCard
+ */
+export const creditCard = {
+    isVisa: isVisa,
+    isElo: isElo,
+    isHipercard: isHipercard,
+    isMasterCard: isMasterCard,
+    isDiners: isDiners,
+    isAmex: isAmex,
+    isCreditCard: isCreditCard
+};
+</file>
+
+<file path="src/date.js">
+import {_isDate} from './lib/date';
+
+/*
+ * Checks for a 'date'
+ * @param date
+ * @return boolean
+ */
+const isDate = date => _isDate(date);
+
+/*
+ * Validates that 'date' is less than or equal to (<=) the value
+ * @param max
+ * @return boolean
+ */
+const maxDate = (max = new Date(3000, 1, 1)) => value => _isDate(value) && value <= max;
+
+/*
+ * Validates that 'date' is greater than or equal to (>=) the value
+ * @param min
+ * @return boolean
+ */
+const minDate = (min = new Date(1900, 1, 1)) => value => _isDate(value) && value >= min;
+
+/*
+ * Validates if date is within the range
+ * @param min
+ * @param max
+ * @return boolean
+ */
+const between = (min = new Date(1900, 1, 1), max = new Date(3000, 1, 1)) =>
+    value => minDate(min)(value) && maxDate(max)(value);
+
+/*
+ * Export constant date
+ */
+export const date = {
+    maxDate: maxDate,
+    minDate: minDate,
+    between: between,
+    isDate: isDate
+};
+</file>
+
+<file path="src/ip.js">
+/*
+ * Checks for a 'Correct IPv4 Address'
+ * @param string - Dotted IPv4 Address
+ * @return boolean
+ */
+const isIpv4 = value => {
+    let ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    return ipRegex.test(value);
+};
+
+/*
+ * Checks for a 'Correct IPv6 Address'
+ * @param string - Formatted IPv6 Address
+ * @return boolean
+ */
+const isIpv6 = value  => {
+    let ipRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
+    return ipRegex.test(value);
+};
+
+/*
+ * Checks for a 'Correct IP Address (IPv4 or IPv6)'
+ * @param string - IP Address
+ * @return boolean
+ */
+const isIp = value => isIpv4(value) || isIpv6(value);
+
+export const ip = {
+    isIp: isIp,
+    isIpv4: isIpv4,
+    isIpv6: isIpv6
+};
+</file>
+
+<file path="src/lib/array.js">
+export const _isArray = value => {
+    return (value !== null &&
+        value.length >= 0 &&
+        Object.prototype.toString.call(value) === '[object Array]');
+};
+</file>
+
+<file path="src/lib/date.js">
+export const _isDate = value => Object.prototype.toString.call(value) === '[object Date]';
+</file>
+
+<file path="src/lib/isnil.js">
+export const isNil = value => value === null || value === undefined;
+</file>
+
+<file path="src/lib/number.js">
+export const _isNumber = value => Object.prototype.toString.call(value) === '[object Number]';
+</file>
+
+<file path="src/lib/object.js">
+export const _isObject = value => Object.prototype.toString.call(value) === '[object Object]';
+</file>
+
+<file path="src/lib/reduce.js">
+/* reduce(func, index, array)
+ *
+ * This method applies a function against an accumulator and each value of the array
+ * (from left-to-right) to reduce it to a single value.
+ *
+ * @param func - function
+ *      Function to execute on each value in the array, taking four arguments:
+ *          function(previousValue, value)
+ *          Example (ES2015):
+ *            const func = (a, b) => a + b
+ *
+ * @param index
+ *      The index of the current element being processed in the array.
+ *
+ * @param array - Array
+ *      The array reduce was called upon.
+ *
+ * Example:
+ *
+ * const sum = (a, b) => a + b
+ * const array = [1,2,3,4,5]
+ * const result = reduce(sum, 0, array)
+ * => result = 15
+ *
+ */
+
+export const reduce = (func, index, array) => {
+    if (Array.prototype.reduce) {
+        return Array.prototype.reduce.apply(array, [func, index]);
+    }
+
+    // Transform array to iterator es2015
+    const iterator = array[Symbol.iterator]();
+
+    // Recursive function
+    const go = (acc, iterable) => {
+        const {value, done} = iterable.next();
+        return done ? acc : go(func(acc, value), iterable);
+    };
+
+    // Call recursive function
+    return go(index, iterator);
+};
+</file>
+
+<file path="src/lib/string.js">
+export const _isString = value => Object.prototype.toString.call(value) === '[object String]';
+</file>
+
+<file path="src/number.js">
+import {_isNumber} from './lib/number';
+
+/*
+ * Checks for a 'Number'
+ * @param number
+ * @return boolean
+ */
+const isNumber = number => _isNumber(number);
+
+/*
+ * Validates that 'number' is less than or equal to (<=) the value
+ * @param maxValue
+ * @return boolean
+ */
+const maxNumber = (maxValue = Number.MAX_VALUE) => value => _isNumber(value) && value <= maxValue;
+
+/*
+ * Validates that 'number' is greater than or equal to (>=) the value
+ * @param minValue
+ * @return boolean
+ */
+const minNumber = (minValue = Number.MIN_VALUE) => value => _isNumber(value) && value >= minValue;
+
+/*
+ * Validates if number is within the range
+ * @param minValue
+ * @param maxValue
+ * @return boolean
+ */
+const between = (minValue = Number.MIN_VALUE, maxValue = Number.MAX_VALUE) =>
+    value => minNumber(minValue)(value) && maxNumber(maxValue)(value);
+
+/*
+ * Export constant number
+ */
+export const number = {
+    maxNumber: maxNumber,
+    minNumber: minNumber,
+    between: between,
+    isNumber: isNumber
+};
+</file>
+
+<file path="src/string.js">
+import {isNil} from './lib/isnil.js';
+import {_isString} from './lib/string';
+
+/*
+ * Checks for a 'String'
+ * @param string - value for check
+ * @return boolean
+ */
+const isString = string => _isString(string);
+
+/*
+ * Validates the size of the 'string' is greater than or equal to (> =) the max
+ * @param minLength
+ * @param string - value for check
+ * @return boolean
+ */
+const minLength = (min = Number.MIN_VALUE) => string => _isString(string) && string.length >= min;
+
+/*
+ * Validates the size of the 'string' is less than or equal to (<=) the min
+ * @param maxLength
+ * @param string - value for check
+ * @return boolean
+ */
+const maxLength = (max = Number.MAX_VALUE) => {
+    if (isNil(max)) {
+        max = Number.MAX_VALUE;
+    }
+    return string => _isString(string) && string.length <= max;
+};
+
+/*
+ * Validates that the length of the string is within the range
+ * @param min
+ * @param max
+ * @return boolean
+ */
+const length = (min = Number.MIN_VALUE, max = Number.MAX_VALUE) =>
+    string => minLength(min)(string) && maxLength(max)(string);
+
+/*
+ * Validate regular expressions
+ * @doc https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+ * @param expression
+ * @param lastIndex
+ * @return boolean
+ */
+const regex = expression =>
+    string => {
+        let reg = new RegExp(expression);
+        return reg.test(string);
+    };
+
+/*
+ * Export constant string
+ */
+export const string = {
+    isString: isString,
+    minLength: minLength,
+    maxLength: maxLength,
+    length: length,
+    regex: regex
+};
+</file>
+
+<file path="src/util.js">
+import {_isArray} from './lib/array.js';
+import {_isNumber} from './lib/number.js';
+import {_isObject} from './lib/object.js';
+import {_isString} from './lib/string.js';
+import {string} from './string.js';
+
+/*
+ * Checks for data
+ * @params value
+ * @return boolean
+ */
+const isRequired = value => {
+    if (_isArray(value)) {
+      return value.length > 0;
+    }
+    if (_isNumber(value)) {
+      return value > 0;
+    }
+    if (_isObject(value)) {
+      return Object.keys(value).length > 0;
+    }
+    if (_isString(value)) {
+      return value.length > 0;
+    }
+    return Boolean(value);
+};
+
+/*
+ * Checks for email
+ * @params email
+ * @return boolean
+ */
+const isEmail = email => {
+    const sQtext = '[^\\x0d\\x22\\x5c]';
+    const sDtext = '[^\\x0d\\x5b-\\x5d]';
+    const sAtom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d]+';
+    const sQuotedPair = '\\x5c[\\x00-\\x7f]';
+    const sDomainLiteral = '\\x5b(' + sDtext + '|' + sQuotedPair + ')*\\x5d';
+    const sQuotedString = '\\x22(' + sQtext + '|' + sQuotedPair + ')*\\x22';
+    const sDomainRef = sAtom;
+    const sSubDomain = '(' + sDomainRef + '|' + sDomainLiteral + ')';
+    const sWord = '(' + sAtom + '|' + sQuotedString + ')';
+    const sDomain = sSubDomain + '(\\x2e' + sSubDomain + ')*';
+    const sLocalPart = sWord + '(\\x2e' + sWord + ')*';
+    const sAddrSpec = sLocalPart + '\\x40' + sDomain;
+    const sValidEmail = '^' + sAddrSpec + '$';
+    return string.regex(sValidEmail)(email);
+};
+
+/**
+ * Check for URL
+ *
+ * Copyright (c) 2010-2013 Diego Perini (http://www.iport.it), MIT licensed
+ * https://gist.github.com/dperini/729294
+ * see also https://mathiasbynens.be/demo/url-regex
+ *
+ * @params url
+ * @return boolean
+ */
+const isURL = url => {
+    const regex = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
+    return string.regex(regex)(url);
+};
+
+/*
+ * Checks for cep
+ * @params cep
+ * @return boolean
+ */
+const isCep = cep => string.regex(/^[0-9]{5}-[0-9]{3}$/)(cep);
+
+/*
+ * Checks for hex color
+ * @params color
+ * @return boolean
+ */
+const isHexColor = color => string.regex(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/)(color);
+
+/*
+ * Validate CPF string with the following format 000.000.000-00
+ * Dots and dash separators are optional
+ * @param string
+ * @return boolean
+ */
+const isCpf = cpfNumber => {
+    const cpfRegex = /^(\d{3}[\.]?\d{3}[\.]?\d{3}[-]?\d{2})$/;
+    if (cpfRegex.test(cpfNumber)) {
+        const cpf = cpfNumber.replace(/\.|-/g, '');
+        if (cpf === '00000000000' ||
+            cpf === '11111111111' ||
+            cpf === '22222222222' ||
+            cpf === '33333333333' ||
+            cpf === '44444444444' ||
+            cpf === '55555555555' ||
+            cpf === '66666666666' ||
+            cpf === '77777777777' ||
+            cpf === '88888888888' ||
+            cpf === '99999999999') {
+            return false;
+        }
+
+        let final;
+        let sum = 0;
+        for (let firstIndex = 0; firstIndex < 9; firstIndex++) {
+            sum += parseInt(cpf.charAt(firstIndex), 10) * (10 - firstIndex);
+        }
+
+        final = 11 - (sum % 11);
+
+        if (final === 10 || final === 11) {
+            final = 0;
+        }
+
+        if (final !== parseInt(cpf.charAt(9), 10)) {
+            return false;
+        }
+
+        sum = 0;
+        for (let secondIndex = 0; secondIndex < 10; secondIndex++) {
+            sum += parseInt(cpf.charAt(secondIndex), 10) * (11 - secondIndex);
+        }
+
+        final = 11 - (sum % 11);
+
+        if (final === 10 || final === 11) {
+            final = 0;
+        }
+
+        if (final !== parseInt(cpf.charAt(10), 10)) {
+            return false;
+        }
+
+        return true;
+    }
+    return false;
+};
+
+/*
+ * Validate CPNJ string with the following format 00.000.000/0000-00
+ * Dots, dash and slash separators are optional
+ * @param string
+ * @return boolean
+ */
+const isCnpj = cnpjNumber => {
+    const cnpjRegex = /^(\d{2}[\.]?\d{3}[\.]?\d{3}[\/]?\d{4}[-]?\d{2})$/;
+    if (cnpjRegex.test(cnpjNumber)) {
+        const cnpj = cnpjNumber.replace(/\.|-|\//g, '');
+        if (cnpj === '00000000000000' ||
+            cnpj === '11111111111111' ||
+            cnpj === '22222222222222' ||
+            cnpj === '33333333333333' ||
+            cnpj === '44444444444444' ||
+            cnpj === '55555555555555' ||
+            cnpj === '66666666666666' ||
+            cnpj === '77777777777777' ||
+            cnpj === '88888888888888' ||
+            cnpj === '99999999999999') {
+            return false;
+        }
+
+        let sum = 0;
+        let length = 12;
+        let num = cnpj.substring(0, length);
+        let digits = cnpj.substring(length);
+        let pos = length - 7;
+
+        for (let firstIndex = length; firstIndex >= 1; firstIndex--) {
+            sum += num.charAt(length - firstIndex) * pos--;
+            if (pos < 2) {
+                pos = 9;
+            }
+        }
+
+        let results = sum % 11 < 2 ? 0 : 11 - sum % 11;
+        if (results !== parseInt(digits.charAt(0), 10)) {
+            return false;
+        }
+
+        length += 1;
+        num = cnpj.substring(0, length);
+        sum = 0;
+        pos = length - 7;
+
+        for (let secondIndex = length; secondIndex >= 1; secondIndex--) {
+            sum += num.charAt(length - secondIndex) * pos--;
+            if (pos < 2) {
+                pos = 9;
+            }
+        }
+
+        results = sum % 11 < 2 ? 0 : 11 - sum % 11;
+        if (results !== parseInt(digits.charAt(1), 10)) {
+            return false;
+        }
+        return true;
+    }
+    return false;
+};
+
+/*
+ * Export constant util
+ */
+export const util = {
+    isRequired: isRequired,
+    isEmail: isEmail,
+    isCep: isCep,
+    isURL: isURL,
+    isHexColor: isHexColor,
+    isCpf: isCpf,
+    isCnpj: isCnpj
+};
+</file>
+
+<file path="src/validate.js">
+import {isNil} from './lib/isnil.js';
+import {_isArray} from './lib/array.js';
+import {reduce} from './lib/reduce.js';
+
+export * from './string';
+export * from './util';
+export * from './boolean';
+export * from './number';
+export * from './date';
+export * from './creditCard';
+export * from './ip';
+
+export const validate =
+    (...fn) =>
+        value => {
+            if (isNil(value)) {
+                return false;
+            }
+
+            return reduce((acc, x) => {
+                if (isNil(x)) {
+                    throw new Error('The function for validation is null or undefined.');
+                } else {
+                    return acc && x(value);
+                }
+            }, true, fn);
+    };
+
+export const isValid = (v, r = []) => (validate(...(_isArray(r) ? r : [r]))(v));
+</file>
+
+</files>

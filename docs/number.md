@@ -1,7 +1,7 @@
 # Numbers
 
 ```es6
-import {number} from 'valid.js'
+import {number} from 'valida-ai'
 ```
 
 ## isNumber
@@ -10,7 +10,7 @@ Checks for a 'Number'
 
 #### Usage
 ```es6
-import {validate, number} from 'valid.js'
+import {validate, number} from 'valida-ai'
 
 let isvalid = validate(number.isNumber)
 let result = isvalid(15)
@@ -26,7 +26,7 @@ Validates the size of the 'number' is less than or equal to (<=) the value
 
 #### Usage
 ```es6
-import {validate, number} from 'valid.js'
+import {validate, number} from 'valida-ai'
 
 let isvalid = validate(number.maxNumber(15))
 let result = isvalid(15)
@@ -42,7 +42,7 @@ Validates the size of the 'number' is greater than or equal to (>=) the value
 #### Usage
 
 ```es6
-import {validate, number} from 'valid.js'
+import {validate, number} from 'valida-ai'
 
 let isvalid = validate(number.minNumber(15))
 let result = isvalid(15)
@@ -58,7 +58,7 @@ Validates if number is within the range
 #### Usage
 
 ```es6
-import {validate, number} from 'valid.js'
+import {validate, number} from 'valida-ai'
 
 let isvalid = validate(number.between(10, 15))
 let result = isvalid(13)
