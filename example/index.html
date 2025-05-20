@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>valida-ai</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        background: #111;
+        color: #eee;
+        padding: 2rem;
+        margin: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .form-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .field {
+        flex: 1 1 300px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      label .material-icons {
+        font-size: 22px;
+        margin-right: 6px;
+        color: #39ff14;
+      }
+
+      .invalid-icon {
+        color: #ff4f4f !important;
+      }
+
+      input {
+        padding: 10px;
+        background: #222;
+        color: #eee;
+        border: 1px solid #333;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #39ff14;
+      }
+
+      input.invalid-input {
+        border-color: #ff4f4f !important;
+      }
+
+      p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+      }
+
+      .valid {
+        color: #39ff14;
+      }
+
+      .invalid {
+        color: #ff4f4f;
+      }
+
+      footer {
+        margin-top: 3rem;
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      footer ul li {
+        margin: 0.5rem 0;
+      }
+
+      footer a {
+        color: #39ff14;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: #ff4f4f;
+      }
+
+      footer .material-icons {
+        font-size: 20px;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 600px) {
+        .form-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>valida-ai – Biblioteca de Validações</h1>
+
+    <div class="form-container">
+      <div class="field">
+        <label><span class="material-icons">person</span>Nome</label>
+        <input id="nome" />
+        <p id="nome-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">email</span>Email</label>
+        <input id="email" />
+        <p id="email-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">fingerprint</span>CPF</label>
+        <input id="cpf" />
+        <p id="cpf-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">badge</span>CNPJ</label>
+        <input id="cnpj" />
+        <p id="cnpj-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">link</span>URL</label>
+        <input id="url" />
+        <p id="url-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">location_on</span>CEP</label>
+        <input id="cep" />
+        <p id="cep-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">palette</span>Cor HEX</label>
+        <input id="hex" />
+        <p id="hex-result"></p>
+      </div>
+      <div class="field">
+        <label
+          ><span class="material-icons">event</span>Data (>= 01/01/2000)</label
+        >
+        <input id="data" type="date" />
+        <p id="data-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">public</span>IP</label>
+        <input id="ip" />
+        <p id="ip-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">pin</span>Número (10–100)</label>
+        <input id="numero" type="number" />
+        <p id="numero-result"></p>
+      </div>
+      <div class="field">
+        <label><span class="material-icons">credit_card</span>Cartão</label>
+        <input id="cc" />
+        <p id="cc-result"></p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="rodape text-left">
+        <ul>
+          <li>
+            <a target="_blank" href="https://github.com/brskt-dev"
+              ><i class="material-icons">rocket</i>brsktdev
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script type="module">
+      import {
+        validate,
+        string,
+        number,
+        date,
+        ip,
+        creditCard,
+        util,
+      } from "https://cdn.jsdelivr.net/gh/brskt-dev/valida-ai/src/validate.js";
+
+      const campos = [
+        {
+          el: "nome",
+          validador: validate(
+            string.minLength(3),
+            string.maxLength(15),
+            util.isRequired
+          ),
+        },
+        { el: "email", validador: validate(util.isEmail) },
+        { el: "cpf", validador: validate(util.isCpf) },
+        { el: "cnpj", validador: validate(util.isCnpj) },
+        { el: "url", validador: validate(util.isURL) },
+        { el: "cep", validador: validate(util.isCep) },
+        { el: "hex", validador: validate(util.isHexColor) },
+        {
+          el: "data",
+          validador: validate((val) => {
+            const dateValue = new Date(val);
+            return date.minDate(new Date("2000-01-01"))(dateValue);
+          }),
+        },
+        { el: "ip", validador: validate(ip.isIp) },
+        {
+          el: "numero",
+          validador: validate(number.between(10, 100)),
+        },
+        { el: "cc", validador: validate(creditCard.isCreditCard) },
+      ];
+
+      campos.forEach(({ el, validador }) => {
+        const input = document.getElementById(el);
+        const result = document.getElementById(`${el}-result`);
+        input.addEventListener("input", () => {
+          const value =
+            input.type === "number"
+              ? Number(input.value)
+              : input.type === "date"
+              ? new Date(input.value)
+              : input.value;
+
+          const valido = validador(value);
+          result.textContent = valido ? "Válido ✅" : "Inválido ❌";
+          result.className = valido ? "valid" : "invalid";
+
+          const icon = input.parentElement.querySelector(".material-icons");
+          if (icon) {
+            icon.classList.toggle("invalid-icon", !valido);
+          }
+          input.classList.toggle("invalid-input", !valido);
+        });
+      });
+    </script>
+  </body>
+</html>
