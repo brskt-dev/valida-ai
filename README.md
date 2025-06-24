@@ -1,6 +1,6 @@
 # valida-ai
 
-**valida-ai** é uma biblioteca JavaScript para validação de dados como strings, números, e-mails, CPF, CNPJ, URLs, entre outros. O projeto foi desenvolvido com foco em simplicidade, uso educacional e acesso fácil para a comunidade brasileira.
+**valida-ai** é uma biblioteca JavaScript para validação de dados como strings, números, e-mails, CPF, CNPJ, URLs. O projeto foi desenvolvido com foco em simplicidade, uso educacional e acesso fácil para a comunidade brasileira.
 
 ---
 
